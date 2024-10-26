@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: theme('colors.primary.indigo');
+    --color-secondary: theme('colors.indigo.400');
+  }
+
+  :root[data-color-scheme="emerald"] {
+    --color-primary: theme('colors.primary.emerald');
+    --color-secondary: theme('colors.emerald.400');
+  }
+
+  :root[data-color-scheme="rose"] {
+    --color-primary: theme('colors.primary.rose');
+    --color-secondary: theme('colors.rose.400');
+  }
+
+  :root[data-color-scheme="amber"] {
+    --color-primary: theme('colors.primary.amber');
+    --color-secondary: theme('colors.amber.400');
+  }
+
+  :root[data-color-scheme="violet"] {
+    --color-primary: theme('colors.primary.violet');
+    --color-secondary: theme('colors.violet.400');
+  }
+
+  :root[data-color-scheme="cyan"] {
+    --color-primary: theme('colors.primary.cyan');
+    --color-secondary: theme('colors.cyan.400');
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+  
+  body {
+    @apply antialiased overflow-x-hidden min-h-screen bg-[#0f1117];
+    font-size: var(--font-size, 16px);
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Compact Mode */
+  .compact {
+    --spacing-base: 0.75rem;
+  }
+
+  .compact .glass-panel {
+    @apply p-3;
+  }
+
+  .compact .glass-card {
+    @apply p-2;
+  }
+
+  .compact h1 {
+    @apply text-xl;
+  }
+
+  .compact h2 {
+    @apply text-lg;
+  }
+
+  .compact h3 {
+    @apply text-base;
+  }
+}
+
+/* Glass Morphism Styles */
+.glass-panel {
+  @apply bg-gray-900/30 backdrop-blur-xl border border-gray-800/50 rounded-xl;
+}
+
+.glass-card {
+  @apply bg-gray-800/20 backdrop-blur-lg border border-gray-700/30 rounded-lg;
+}
+
+.glass-button {
+  @apply bg-[var(--color-primary)] bg-opacity-90 backdrop-blur-sm 
+    hover:bg-opacity-80 text-white rounded-lg transition-all duration-200
+    border border-[var(--color-secondary)] border-opacity-30 
+    shadow-lg;
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-900/50;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-700/50 rounded-full hover:bg-gray-600/50;
+}
+
+/* Responsive Container */
+.responsive-container {
+  @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .glass-panel {
+    @apply rounded-lg p-4;
+  }
+  
+  .glass-card {
+    @apply p-3;
+  }
+
+  .chart-container {
+    @apply h-[200px] sm:h-[300px] lg:h-[400px];
+  }
+}
+
+/* Layout Utilities */
+.main-layout {
+  @apply min-h-screen flex flex-col;
+}
+
+.content-layout {
+  @apply flex-1 flex flex-col lg:flex-row;
+}
+
+.sidebar-layout {
+  @apply fixed lg:sticky top-0 z-40 h-screen transition-transform duration-300 ease-in-out;
+}
+
+.main-content {
+  @apply flex-1 min-w-0 overflow-hidden;
+}
+
+/* Font Sizes */
+.text-size-sm {
+  font-size: 14px;
+}
+
+.text-size-base {
+  font-size: 16px;
+}
+
+.text-size-lg {
+  font-size: 18px;
+}
+
+/* Animation Utilities */
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Theme Transitions */
+.theme-transition {
+  @apply transition-colors duration-200;
+}
+
+/* Language-specific styles */
+[lang="ar"] {
+  direction: rtl;
+}
+
+/* Chart Style Variations */
+.chart-style-candlestick .tradingview-widget-container {
+  --tv-color-platform-background: transparent;
+}
+
+.chart-style-line .tradingview-widget-container {
+  --tv-color-platform-background: transparent;
+  --tv-line-style-price-line: 2;
+}
+
+.chart-style-area .tradingview-widget-container {
+  --tv-color-platform-background: transparent;
+  --tv-color-pane-background: rgba(0, 0, 0, 0.1);
+}
